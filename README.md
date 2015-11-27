@@ -5,12 +5,22 @@ ICGTransitionAnimation is a library to customize transition animation in iOS 7.
 
 ![Demo](https://raw.githubusercontent.com/itsmeichigo/ICGTransitionAnimation/master/Demo.gif)
 
+## Changes
+v 1.02
+ * Fix bug unable to show modal transition animation in storyboard.
+
+v 1.01 
+ * Fix wrong animation transition direction.
+ 
+v 1.0
+ * First public release
+
 ## Getting started
 
 #### Using CocoaPods:
   Just add the following line in to your pod file:
   
-	pod 'ICGTransitionAnimation', '~> 1.0'
+	pod 'ICGTransitionAnimation', '~> 1.02'
 
 #### Manually add ICGTransitionAnimation as a library:
   Drag and drop the subfolder named `ICGTransitionAnimation` in your project and you are done.
@@ -28,6 +38,15 @@ ICGTransitionAnimation is a library to customize transition animation in iOS 7.
 	 navigationController.animationController = layerAnimation;
  ```
 
+ If you use storyboard, make sure your navigation controller's custom class is `ICGNavigationController`, just so you can set its animation controller via any of its view controller. For example, you can add this inside `viewDidLoad` method of your root view controller:
+
+ ```Objective-C
+    ICGNavigationController *fancyNavigationController = (ICGNavigationController *)self.navigationController;
+    ICGLayerAnimation *layerAnimation = [[ICGLayerAnimation alloc] initWithType:ICGLayerAnimationCover];
+    fancyNavigationController.animationController = layerAnimation;
+ ```
+ You can also take a look at the storyboard demo to find out how the library should be integrated.
+ 
  2. Custom modal transition
 
  In order to customize the modal transition animation, you need to make sure your presenting view controller subclasses `ICGViewController` and set a custom animation controller to it.
